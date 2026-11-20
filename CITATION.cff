@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Loops cannot see most registration error: measuring the visibility ceiling of cycle consistency"
+type: article
+authors:
+  - family-names: Parrish
+    given-names: Russell
+    orcid: https://orcid.org/0009-0008-9781-7995
+version: "draft methods note"
+date-released: 2026-11-20
+license: CC-BY-4.0
+url: https://parallaxmetrology.com/loop-visibility/
+repository-code: https://github.com/parallaxmetrology/loop-visibility
+keywords: [image registration, deformable registration, cycle consistency, transitivity, inverse consistency, quality assurance, Hodge decomposition, DIR-Lab, 4DCT, radiotherapy]
+abstract: >
+  The part of a set of pairwise registrations that fails to close around loops is exactly the part of its
+  error that fails to close, because true displacements are differences of positions. Splitting the error on
+  the registration graph into integrable and cyclic parts gives the share any closure-based check can see.
+  On DIR-Lab thoracic 4DCT, 93.1% of whole-volume Demons error and 79.1% of a local translation registrar's
+  error is invisible to every loop, against 33.3% if errors were independent.

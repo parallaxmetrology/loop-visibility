@@ -1,0 +1,8 @@
+{
+  "declared": "2026-11-20, after the visibility-ceiling note draft; before any Demons fit on intermediate phases.",
+  "question": "Visibility (cyclic share of error energy) for a standard whole-volume deformable registrar on the DIR-Lab six-phase graphs, beside the 32-voxel translation window.",
+  "registrar": "SimpleITK Diffeomorphic Demons via the pilot's popi_deformation.instrument.fit, parameters from the pilot's chapter-15 PLAN.json unchanged (HU clip [-1000,400], 8/4/2 mm grids, 80/60/40 iterations), stored = HU + 1024. All 15 pairs i<j among T00..T50 fitted independently, fixed = Ti, moving = Tj.",
+  "queries": "Lagrangian and truth-blind: for each of the 75 4D landmarks, x0 = its T00 coordinate; x_i = x0 + u_0i(x0) from the independently fitted T00->Ti field; edge (i,j) displacement = u_ij(x_i). Only T00 landmark files are read during measurement. Results sealed before scoring.",
+  "scoring": "Same Hodge split as paper/compute.py on K6 (chance invisible share 1/3); pooled energy share, case-clustered bootstrap, pessimistic truth-noise allowance with each case's published observer error. Reported on all 75 landmarks per case and on the 477 landmarks of the window analysis (matched set).",
+  "note": "The query points x_i come from star estimates, so query-location error is shared by the edges leaving node i; this is part of the registrar's behaviour as deployed and is stated as such."
+}

@@ -1,0 +1,9 @@
+{
+ "frozen_utc": "2026-11-19T23:19:59Z",
+ "sha256": {
+  "lagrangian/PLAN_ADDENDUM.json": "2d5e76594c0ff2755d0ba2f338b8cab2cab9c0abf6e94bde4eb90f3f85987c34",
+  "lagrangian/measure_lagrangian.py": "71428f4bc40fc7cbf9d2b3176b224b8a33e30bcfa4dbb3da01ad2727e5b6ac61",
+  "evaluate.py": "83d8a8d6c32fa879bcf2a33ea94ce8e55ca841d78c37f758c9986e2aa55f5774",
+  "diagnose.py": "7f386c2f797b186d147631b55a446835e41698209071913bec28e8f41b57c7d9"
+ }
+}

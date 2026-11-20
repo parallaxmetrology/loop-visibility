@@ -1,0 +1,27 @@
+{
+  "study": "Truth-noise audit by instrument covariance (triple collocation), known-answer test on DIR-Lab 4DCT",
+  "status": "PRE-REGISTERED before any DIR-Lab image or landmark file is on this machine. Data access requires the DIR-Lab request form (Russell submits it).",
+  "motivation": "On POPI (../LABBOOK.html, section 6) two unrelated registrars shared ~1.05 mm RMS of error against the expert landmarks; the shared part was phase-independent and matched slice snapping in z. If that shared error is annotation noise, the covariance of two registrars' errors estimates the benchmark's own annotation noise without repeat annotation. Triple collocation is established in geoscience (three measurements of one truth, independent errors: error variance of one = covariance of its differences with the other two). Its use to audit registration landmark benchmarks was not found in a quick search; novelty is not claimed.",
+  "known_answer": "DIR-Lab publishes, per case, the mean (SD) repeat-registration error of 3 observers (4DCT1-5: 200 repeats each; 4DCT6-10: 150 each), copied from the 4DCT download page on 2026-11-19: case1 0.85, case2 0.70, case3 0.77, case4 1.13, case5 0.92, case6 0.97, case7 0.81, case8 1.03, case9 0.75, case10 0.86 mm. Never used to fit anything.",
+  "data": "Primary: 300-landmark files caseID_300_T00 / T50 for cases 1-10. Secondary: 75-landmark 4D sets on T00..T50 (six phases).",
+  "instruments": {
+    "A_window": "The pilot's frozen translation instrument: tapered FFT on the canonical normalized 32-voxel window plus Powell NCC refinement, centred at the rounded T00 landmark in both images, native voxels. Pilot interior/texture guards as frozen; excluded landmarks reported.",
+    "B_demons": "SimpleITK Diffeomorphic Demons with the pilot's chapter-15 PLAN.json parameters (HU clip [-1000,400], 8/4/2 mm grids, 80/60/40 iterations), fitted T00->T50 per case over the whole volume, sampled at T00 landmark physical positions.",
+    "rule": "Neither instrument reads T50 landmarks. Measurements sealed (hashed) before landmark targets are loaded for scoring."
+  },
+  "estimator": "Per case: e_A, e_B = predicted minus annotated T00->T50 displacement (mm, z y x). Shared covariance per axis c_a = cov(e_A[a], e_B[a]) over landmarks. Annotation-noise estimate expressed as the mean 3-D norm of a zero-mean Gaussian with variances c_a (Monte Carlo, 10^5 draws); negative c_a counts as 0 and is reported.",
+  "mapping_to_published": "Published repeat error is the distance between two independent placements of the matched point, so it carries sqrt(2) times one placement's noise. Our shared term carries one placement's matching noise. Primary prediction: published / estimate = sqrt(2) = 1.41.",
+  "primary_test": "PASS if the ratio published/estimate lies in [1.41/1.5, 1.41*1.5] = [0.94, 2.12] for at least 7 of 10 cases AND the pooled ratio (sum published / sum estimate) lies in that band. FAIL otherwise. Spearman across the 10 cases reported but not gated (range 0.70-1.13 mm, n=10 is weak).",
+  "falsifiers_named_in_advance": [
+    "Estimate far above published: the two registrars share image-driven error (same hard regions), so covariance is not truth noise.",
+    "Estimate near zero: registrar errors dominate and are independent; annotation noise is small relative to them.",
+    "Strong case-to-case dependence on displacement size rather than observer error: shared error is motion-driven registration failure."
+  ],
+  "secondary": {
+    "phase_independence": "On the 75-landmark six-phase sets, after per-landmark demeaning across T10..T50 (T00 as reference), the shared error's phase-lag correlation should sit near -1/(5-1) = -0.25 if it is independent per-point noise.",
+    "slice_snapping": "Check whether DIR-Lab coordinates are integer voxel indices. If so, snapping alone predicts pair SD sqrt(2)*s/sqrt(12) per axis (z: 2.5 mm slices -> 1.02 mm).",
+    "visibility_ceiling_replication": "On the six-phase sets (K6, 15 edges, chance integrable share 5/15 = 33%), measure the integrable share of window-instrument error. POPI gave 93%.",
+    "robustness": "Repeat the primary with landmarks dropped where the truth-free disagreement |A - B| > 3 mm."
+  },
+  "scope": "Exploratory methods test on a public benchmark; 10 patients, one scanner site. A PASS supports using registrar covariance to audit annotation noise on benchmarks without repeat annotations (e.g. POPI); it does not validate either registrar."
+}

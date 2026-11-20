@@ -1,0 +1,70 @@
+{
+ "eulerian_fft": {
+  "top1": {
+   "cyclic": 4,
+   "ncc": 1,
+   "shift": 1
+  },
+  "top1_cyc_minus_ncc_ci": [
+   -1.0,
+   7.0
+  ],
+  "worst_edge_err_mean": 3.6119442434261564,
+  "worst_edge_cyclic_share_median": 0.011113882788641012,
+  "gross_edge_cyclic_share_median": 0.006534597815786506,
+  "all_edge_cyclic_share_median": 0.016750236650909373,
+  "gross_edges_mostly_cyclic": 4,
+  "gross_edges": 237
+ },
+ "eulerian_refined": {
+  "top1": {
+   "cyclic": 7,
+   "ncc": 1,
+   "shift": 1
+  },
+  "top1_cyc_minus_ncc_ci": [
+   1.0,
+   11.0
+  ],
+  "worst_edge_err_mean": 3.4459034256434156,
+  "worst_edge_cyclic_share_median": 0.017532836314645195,
+  "gross_edge_cyclic_share_median": 0.005604224849778185,
+  "all_edge_cyclic_share_median": 0.016041698992253176,
+  "gross_edges_mostly_cyclic": 4,
+  "gross_edges": 212
+ },
+ "lagrangian_fft": {
+  "top1": {
+   "cyclic": 5,
+   "ncc": 0,
+   "shift": 1
+  },
+  "top1_cyc_minus_ncc_ci": [
+   1.9750000000000085,
+   9.0
+  ],
+  "worst_edge_err_mean": 3.6346058840694773,
+  "worst_edge_cyclic_share_median": 0.012741899087983611,
+  "gross_edge_cyclic_share_median": 0.0072935859002031846,
+  "all_edge_cyclic_share_median": 0.01959487148188173,
+  "gross_edges_mostly_cyclic": 6,
+  "gross_edges": 237
+ },
+ "lagrangian_refined": {
+  "top1": {
+   "cyclic": 8,
+   "ncc": 1,
+   "shift": 1
+  },
+  "top1_cyc_minus_ncc_ci": [
+   2.0,
+   13.0
+  ],
+  "worst_edge_err_mean": 3.4703121578393037,
+  "worst_edge_cyclic_share_median": 0.011754808825087865,
+  "gross_edge_cyclic_share_median": 0.0038579026373107336,
+  "all_edge_cyclic_share_median": 0.01290662149136676,
+  "gross_edges_mostly_cyclic": 4,
+  "gross_edges": 199
+ }
+}

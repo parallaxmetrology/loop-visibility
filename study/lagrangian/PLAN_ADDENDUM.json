@@ -1,0 +1,7 @@
+{
+  "declared_after": "evaluate.py and diagnose.py results were seen (post-hoc, exploratory).",
+  "finding_that_motivates_it": "93% of edge-error energy is integrable (chance 20%). In the pilot and in the first K10 run every edge is measured at the fixed phase-10 landmark centre in all phases (Eulerian). For a pair (i,j) not involving phase 10 that window holds whatever tissue sits at the phase-10 position, not the landmark, which has moved up to ~7 mm.",
+  "change": "Lagrangian re-centring, truth-free. Estimated landmark position in phase i: c_i = round(c + t_hat(10->i)) from the first run's direct FFT star edges (voxels). Edge (i,j), i<j, is re-measured with both windows centred at c_i (phase i and phase j). Edges leaving phase 10 are unchanged (c_10 = c). Same register / refine_translation / normalized_patch; same eligibility (any landmark whose re-centred windows leave the volume keeps its Eulerian edge and is counted).",
+  "scoring": "Unchanged evaluate.py functions and estimators, run against the new measurements. Compared to the first run on the same 28 landmarks.",
+  "prediction": "If the Eulerian wrong-tissue effect is a major part of the non-star error, all-45 TRE and gross edges drop, and synchronisation stops hurting phase-10 TRE. If not, nothing material changes and the integrable error is mostly window-vs-landmark heterogeneity plus annotation noise, which no loop can see."
+}

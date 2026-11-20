@@ -1,0 +1,11 @@
+{
+  "declared": "After unpacking and truth-blind format checks, before any measurement or any T50 landmark value was read.",
+  "facts_found": {
+    "conventions": "Landmark files are 1-based integer xyz voxel indices on the extreme phases; arrays load as little-endian int16 (z,y,x) with no axis flip (T00 landmark/feature alignment peaks at offset 0 after subtracting 1, all 10 cases). Stored value = HU + 1024 (air peak ~0-60, soft tissue ~1062-1087). The T10-T40 4D-75 coordinates are non-integer: likely model-propagated rather than hand-placed, so the phase-independence secondary reads them as propagated points, not independent annotations.",
+    "guard_yield": "Frozen pilot interior guard + texture leaves per case: 1, 35, 26, 56, 54, 141, 88, 131, 65, 72 landmarks (case 1 has 94 slices; the guard needs a 40-voxel margin)."
+  },
+  "primary_unchanged": "The pre-registered primary runs exactly as frozen. Case 1 (n=1) is not estimable and counts as a non-pass, so PASS needs 7 of the 9 estimable cases inside the band.",
+  "sensitivity_S1": "Declared now: eligibility = 32-voxel window inside the volume in T00 and T50 + frozen texture check on T00 (drops only the body-envelope margin). Same instruments, estimator and band. Reported beside the primary, never substituted for it.",
+  "demons_intensity": "HU = stored - 1024 before the PLAN's [-1000, 400] clip. Demons physical spacing from the DIR-Lab page; identity direction, zero origin.",
+  "measurement": "One truth-blind run stores every landmark whose window fits the volume, with its guard and texture flags, so primary and S1 come from the same measurements."
+}

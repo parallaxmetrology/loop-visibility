@@ -1,0 +1,7 @@
+{
+  "declared": "2026-11-20, after a machine out-of-memory crash during demons_k6.py; before any Demons scoring.",
+  "what_survived": "demons_k6.jsonl holds complete records for cases 1-5 (15/15 fits each, all geometrically valid). Cases 6-10 were lost; no seal was written; no Demons K6 result has been scored or looked at.",
+  "cause": "demons_k6.py kept all 15 dense displacement fields of a case in memory (about 3.5 GB for a 512x512 case) in each of 3 parallel workers.",
+  "change": "Implementation only. demons_k6_resume.py runs cases 6-10 one at a time and samples each field at the query points immediately, then discards it. Fit order (star edges 0->i first, then the rest), Demons parameters, query rule (x_i = x0 + u_0i(x0); edge (i,j) read at x_i), coverage rule and output format are identical. Thread count 6 instead of 3 (SimpleITK multithreading; no algorithmic change expected).",
+  "combine": "Cases 1-5 from demons_k6.jsonl and 6-10 from demons_k6_part2.jsonl are concatenated into demons_k6_all.jsonl and sealed before scoring."
+}

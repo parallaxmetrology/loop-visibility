@@ -1,0 +1,28 @@
+{
+  "study": "Multi-cycle holonomy on POPI: the full 10-phase graph instead of triplets",
+  "status": "EXPLORATORY_ON_EXPOSED_POPI",
+  "declared_utc": "2026-11-19",
+  "why": "Every earlier chapter of ../dvc-holonomy-pilot used three observations, i.e. one independent loop per query. One loop can flag inconsistency but cannot say which edge is wrong, and a one-cycle closure carries little beyond the image residual. POPI has ten respiratory phases. On the complete graph K10 (45 edges, 36 independent cycles per axis) the Hodge solver can (a) synchronise: replace the 45 noisy edges by their integrable part, averaging independent edge errors across loops, and (b) localise: the cyclic remainder of each edge says which measurements disagree with the rest. Neither was ever tested.",
+  "exposure": "POPI target landmarks are already exposed: earlier chapters scored triplets on them and the identity baseline was computed in the review that led to this study. This is exploratory, single patient. The method parameters below are fixed before any multi-cycle error is computed; measurement code never reads target landmarks.",
+  "instrument": "Unchanged from the pilot, imported read-only: dvc_pilot.registration.register (tapered FFT, upsample 20), canonical normalized_patch 32-cube, interior/envelope guard, phase-10 texture check, dvc_pilot.refinement.refine_translation (secondary), dh.hodge.decompose. Same integer centre (rounded phase-10 landmark) in all ten phases, as in chapter 13.",
+  "eligibility": "First 40 phase-10 landmarks. Eligible if the guarded interior holds at the centre in all ten phase envelopes and the phase-10 chart passes the frozen texture check. Every eligible landmark gets all 45 edges; failed registrations are recorded and the landmark is reported as such, never dropped silently.",
+  "graph": "Nodes are phases 00..90 (index 0..9). Edge (i,j), i<j, carries t_ij in voxels zyx mapping phase-i coordinates to phase-j; converted to mm with native spacing (2, 0.97656, 0.97656). Faces: all 120 triangles. Decomposition done per axis on mm values.",
+  "estimators": {
+    "direct": "Phase-10 star edges as measured (what every prior chapter used). For a non-10 pair (i,j) the direct estimate is the measured edge t_ij.",
+    "ls_sync": "Unweighted Hodge gradient part; node displacement relative to phase 10 is z_j - z_10; pair estimate z_j - z_i.",
+    "holonomy_robust": "IRLS on the Hodge gradient. Weights from each edge's cyclic remainder norm r_e (3-vector, mm): w_e = 1/(1+(r_e/1.0mm)^2), shared by the three axes, 10 iterations starting from uniform. Uses only loop disagreement.",
+    "residual_weighted": "Conventional confidence comparator: one weighted Hodge gradient with w_e = 1/(ncc_residual_e + 0.02). Uses only image match quality.",
+    "combined": "IRLS as holonomy_robust but starting weights and multiplied prior from residual_weighted.",
+    "refined_*": "Secondary: the same five estimators on Powell-refined edges (failed refinements keep FFT)."
+  },
+  "primary_accuracy": "Phase-10 outgoing TRE: mean over eligible landmarks and the 9 target phases of |estimated displacement - (P_j - P_10)| in mm. Secondary: mean over all 45 pair TREs; continuity metric = mean max-of-3 TRE over the five chapter-13 triplets.",
+  "primary_localisation": "Per edge, compare three predictors of true edge error |t_e - (P_j - P_i)|: (1) cyclic remainder norm r_e from ls_sync, (2) NCC residual, (3) measured shift magnitude |t_e| (a trivial motion-size predictor). Report mean within-landmark Spearman, pooled AUROC for true edge error > 2 mm and > 1 mm, and top-1/top-3 hit rate of the argmax edge against the truly worst edge (chance 1/45, 3/45). A localisation claim requires r_e to beat both NCC residual and shift magnitude.",
+  "uncertainty": "4000 landmark-cluster bootstrap resamples, seed 20261119, paired between estimators. Conditional on one patient; neighbouring landmarks correlate.",
+  "readings": {
+    "sync_helps": "holonomy_robust or ls_sync improves primary TRE over direct by >=10% with paired CI lower > 0.",
+    "holonomy_adds_over_conventional": "holonomy_robust beats residual_weighted on primary TRE with paired CI lower > 0, or combined beats residual_weighted.",
+    "localises": "Mean within-landmark Spearman of r_e exceeds both comparators with paired CI lower > 0 on the difference."
+  },
+  "noise_floor": "Secondary, truth-only: annotation jitter bounded by fitting each landmark's 10-phase trajectory with a 2-harmonic Fourier series per axis; residual RMS scaled by sqrt(10/5). Annotation noise is node noise, hence integrable: it adds to TRE but cannot create cycle residual.",
+  "blind_spot_stated_in_advance": "Any error that behaves like a per-phase offset (e.g. every edge touching phase 50 biased the same way) is integrable and invisible to cycles. Synchronisation cannot fix it."
+}

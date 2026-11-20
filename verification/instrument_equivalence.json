@@ -1,0 +1,34 @@
+{
+ "window_case1": {
+  "landmarks": 282,
+  "max_abs_diff_fft_vox": 0.0,
+  "max_abs_diff_refined_vox": 0.0,
+  "max_abs_diff_refined_residual": 0.0,
+  "guard_flag_mismatches": 0
+ },
+ "window_case10": {
+  "landmarks": 60,
+  "max_abs_diff_fft_vox": 0.0,
+  "max_abs_diff_refined_vox": 0.0,
+  "max_abs_diff_refined_residual": 0.0,
+  "guard_flag_mismatches": 0
+ },
+ "hodge": {
+  "graphs": 505,
+  "max_relative_energy_diff": 1.5486748930631912e-15
+ },
+ "demons_case1_T00_T10": {
+  "settings_match_plan": {
+   "grid_spacing_mm": true,
+   "image_smoothing_sigma_mm": true,
+   "iterations": true,
+   "total_field_sigma_pixels": true,
+   "update_field_sigma_pixels": true,
+   "maximum_update_step_pixels": true,
+   "maximum_rms_error": true,
+   "intensity_difference_threshold": true
+  },
+  "landmarks": 75,
+  "max_abs_diff_mm": 0.0
+ }
+}

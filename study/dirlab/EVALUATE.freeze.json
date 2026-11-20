@@ -1,0 +1,11 @@
+{
+ "frozen_utc": "2026-11-20T00:20:49Z",
+ "sha256": {
+  "PREREG.json": "17b7c89443245d1289c45b3d3fab2c6b73c60639d08af40cf6aaf8cc5c4ee72a",
+  "AMENDMENT_1.json": "93cae3133768479154e6f4fcecfbf37889ad05d44ac250c8fa160ddf219bd6c8",
+  "common.py": "e6b292bfaf9595722bad7db30004f0488e6ff36cb55228703d172fa126a9ce08",
+  "measure.py": "523afa5b15861843d4487d66a48b537d8bf9b1c8cb0160669f3cfee16aace954",
+  "evaluate.py": "b1901ba56cbaa8ceee281f65ce0211be7c96d83e875ffeab522734f551479b2e"
+ },
+ "note": "evaluate.py frozen while measurement still running; no T50 value read"
+}

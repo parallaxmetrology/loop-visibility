@@ -1,0 +1,9 @@
+{
+ "sealed_utc": "2026-11-20T00:41:24Z",
+ "targets_read": false,
+ "sha256": {
+  "window.jsonl": "9b1e53f1f17ac8d1c64af6de5ecac33eb2743ece4e7ba44b4aaa23e054c0e93b",
+  "six_phase.jsonl": "4ddb8dd768f35faad9c73707f8ba8f8d74cba329ccabeb99fe31d6c626348a0b",
+  "demons.jsonl": "e4a24da1c8d960d9bde7260e16eb01e8f68e416c79a4a4a880864c9d2538f554"
+ }
+}
